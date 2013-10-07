@@ -11,6 +11,11 @@
   <packaging>war</packaging>
   <dependencies>
     <dependency>
+      <groupId>io.github.gumbo</groupId>
+      <artifactId>launcher</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
       <groupId>org.apache.cloudstack</groupId>
       <artifactId>cloud-framework-spring-module</artifactId>
       <version>${acs.version}</version>
