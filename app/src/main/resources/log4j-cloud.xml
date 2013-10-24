@@ -31,8 +31,8 @@ under the License.
       <param name="Append" value="true"/>
       <param name="Threshold" value="TRACE"/>
       <rollingPolicy class="org.apache.log4j.rolling.TimeBasedRollingPolicy">
-        <param name="FileNamePattern" value="vmops.log.%d{yyyy-MM-dd}.gz"/>
-        <param name="ActiveFileName" value="vmops.log"/>
+        <param name="FileNamePattern" value="../vmops.log.%d{yyyy-MM-dd}.gz"/>
+        <param name="ActiveFileName" value="../vmops.log"/>
       </rollingPolicy>
       <layout class="org.apache.log4j.EnhancedPatternLayout">
          <param name="ConversionPattern" value="%d{ISO8601} %-5p [%c{1.}] (%t:%x) %m%n"/>
@@ -43,8 +43,8 @@ under the License.
       <param name="Append" value="true"/>
       <param name="Threshold" value="DEBUG"/>
       <rollingPolicy class="org.apache.log4j.rolling.TimeBasedRollingPolicy">
-        <param name="FileNamePattern" value="api.log.%d{yyyy-MM-dd}.gz"/>
-        <param name="ActiveFileName" value="api.log"/>
+        <param name="FileNamePattern" value="../api.log.%d{yyyy-MM-dd}.gz"/>
+        <param name="ActiveFileName" value="../api.log"/>
       </rollingPolicy>
       <layout class="org.apache.log4j.EnhancedPatternLayout">
          <param name="ConversionPattern" value="%d{ISO8601} %-5p [%c{1.}] (%t:%x) %m%n"/>
@@ -55,8 +55,8 @@ under the License.
       <param name="Append" value="true"/>
       <param name="Threshold" value="DEBUG"/>
       <rollingPolicy class="org.apache.log4j.rolling.TimeBasedRollingPolicy">
-        <param name="FileNamePattern" value="awsapi.log.%d{yyyy-MM-dd}.gz"/>
-        <param name="ActiveFileName" value="awsapi.log"/>
+        <param name="FileNamePattern" value="../awsapi.log.%d{yyyy-MM-dd}.gz"/>
+        <param name="ActiveFileName" value="../awsapi.log"/>
       </rollingPolicy>
       <layout class="org.apache.log4j.EnhancedPatternLayout">
          <param name="ConversionPattern" value="%d{ISO8601} %-5p [%c{1.}] (%t:%x) %m%n"/>
@@ -66,42 +66,42 @@ under the License.
    <!-- Append warnings+ to the syslog if it is listening on UDP port FIXME make sysloghost configurable! -->
    <!-- ============================== -->
 
-   <appender name="SYSLOG" class="org.apache.log4j.net.SyslogAppender">
-      <param name="Threshold" value="WARN"/>
-      <param name="SyslogHost" value="localhost"/>
-      <param name="Facility" value="LOCAL6"/>
-      <layout class="org.apache.log4j.PatternLayout">
-         <param name="ConversionPattern" value="%-5p [%c{3}] (%t:%x) %m%n"/>
-      </layout>
-   </appender>
+<!--    <appender name="SYSLOG" class="org.apache.log4j.net.SyslogAppender"> -->
+<!--       <param name="Threshold" value="WARN"/> -->
+<!--       <param name="SyslogHost" value="localhost"/> -->
+<!--       <param name="Facility" value="LOCAL6"/> -->
+<!--       <layout class="org.apache.log4j.PatternLayout"> -->
+<!--          <param name="ConversionPattern" value="%-5p [%c{3}] (%t:%x) %m%n"/> -->
+<!--       </layout> -->
+<!--    </appender> -->
 
    <!-- ============================== -->
    <!-- Append alerts to the syslog if it is configured -->
    <!-- ============================== -->
 
-   <appender name="ALERTSYSLOG" class="org.apache.cloudstack.syslog.AlertsSyslogAppender">
-      <param name="Threshold" value="WARN"/>
-      <param name="SyslogHosts" value=""/>
-      <param name="Facility" value="LOCAL6"/>
-      <layout class="org.apache.log4j.PatternLayout">
-         <param name="ConversionPattern" value="%-5p [%c{3}] (%t:%x) %m%n"/>
-      </layout>
-   </appender>
+<!--    <appender name="ALERTSYSLOG" class="org.apache.cloudstack.syslog.AlertsSyslogAppender"> -->
+<!--       <param name="Threshold" value="WARN"/> -->
+<!--       <param name="SyslogHosts" value=""/> -->
+<!--       <param name="Facility" value="LOCAL6"/> -->
+<!--       <layout class="org.apache.log4j.PatternLayout"> -->
+<!--          <param name="ConversionPattern" value="%-5p [%c{3}] (%t:%x) %m%n"/> -->
+<!--       </layout> -->
+<!--    </appender> -->
 
    <!-- ============================== -->
    <!-- send alert warnings+ as the SNMP trap if it is configured! -->
    <!-- ============================== -->
 
-   <appender name="SNMP" class="org.apache.cloudstack.alert.snmp.SnmpTrapAppender">
-      <param name="Threshold" value="WARN"/>
-      <param name="SnmpManagerIpAddresses" value=""/>
-      <param name="SnmpManagerPorts" value=""/>
-      <param name="SnmpManagerCommunities" value=""/>
-      <layout class="org.apache.cloudstack.alert.snmp.SnmpEnhancedPatternLayout">
-         <param name="PairDelimiter" value="//"/>
-         <param name="KeyValueDelimiter" value="::"/>
-      </layout>
-   </appender>
+<!--    <appender name="SNMP" class="org.apache.cloudstack.alert.snmp.SnmpTrapAppender"> -->
+<!--       <param name="Threshold" value="WARN"/> -->
+<!--       <param name="SnmpManagerIpAddresses" value=""/> -->
+<!--       <param name="SnmpManagerPorts" value=""/> -->
+<!--       <param name="SnmpManagerCommunities" value=""/> -->
+<!--       <layout class="org.apache.cloudstack.alert.snmp.SnmpEnhancedPatternLayout"> -->
+<!--          <param name="PairDelimiter" value="//"/> -->
+<!--          <param name="KeyValueDelimiter" value="::"/> -->
+<!--       </layout> -->
+<!--    </appender> -->
 
    <!-- ============================== -->
    <!-- Append messages to the console -->
@@ -110,6 +110,14 @@ under the License.
    <appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
       <param name="Target" value="System.out"/>
       <param name="Threshold" value="INFO"/>
+      <layout class="org.apache.log4j.EnhancedPatternLayout">
+         <param name="ConversionPattern" value="%-5p [%c{1.}] (%t:%x) %m%n"/>
+      </layout>
+   </appender>
+
+   <appender name="CONSOLED" class="org.apache.log4j.ConsoleAppender">
+      <param name="Target" value="System.out"/>
+      <param name="Threshold" value="DEBUG"/>
       <layout class="org.apache.log4j.EnhancedPatternLayout">
          <param name="ConversionPattern" value="%-5p [%c{1.}] (%t:%x) %m%n"/>
       </layout>
@@ -181,6 +189,15 @@ under the License.
       <level value="INFO"/>
       <appender-ref ref="AWSAPI"/>
    </logger>
+   
+   <logger name="org.jooq">
+      <level value="DEBUG"/>
+      <appender-ref ref="CONSOLED"/>
+   </logger>
+
+   <category name="org.springframework">
+      <priority value="WARN"/>
+   </category>
 
    <!-- ============================== -->
    <!-- Add or remove these logger for SNMP, this logger is for SNMP alerts plugin -->
@@ -188,11 +205,11 @@ under the License.
 
    <logger name="org.apache.cloudstack.alerts" additivity="false">
       <level value="WARN"/>
-      <appender-ref ref="SYSLOG"/>
+<!--       <appender-ref ref="SYSLOG"/> -->
       <appender-ref ref="CONSOLE"/>
       <appender-ref ref="FILE"/>
-      <appender-ref ref="SNMP"/>
-      <appender-ref ref="ALERTSYSLOG"/>
+<!--       <appender-ref ref="SNMP"/> -->
+<!--       <appender-ref ref="ALERTSYSLOG"/> -->
    </logger>
 
    <!-- ======================= -->
@@ -201,7 +218,7 @@ under the License.
 
    <root>
       <level value="INFO"/>
-      <appender-ref ref="SYSLOG"/>
+<!--       <appender-ref ref="SYSLOG"/> -->
       <appender-ref ref="CONSOLE"/>
       <appender-ref ref="FILE"/>
    </root>

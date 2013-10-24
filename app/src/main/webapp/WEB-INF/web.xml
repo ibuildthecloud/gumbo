@@ -7,6 +7,10 @@
 		<param-name>log4jConfigLocation</param-name>
 		<param-value>classpath:log4j-cloud.xml</param-value>
 	</context-param>
+    <context-param>
+        <param-name>parentModule</param-name>
+        <param-value>core</param-value>
+    </context-param>
 	<listener>
 		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
 	</listener>  
@@ -14,10 +18,20 @@
 	<listener>
 		<listener-class>org.apache.cloudstack.spring.module.web.CloudStackContextLoaderListener</listener-class>
 	</listener>
+
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath:META-INF/cloudstack/webApplicationContext.xml</param-value>
 	</context-param>
+
+    <filter>
+        <filter-name>ConfigItem</filter-name>
+        <filter-class>org.apache.cloudstack.configitem.servlet.ConfigItemFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>ConfigItem</filter-name>
+        <url-pattern>/config/*</url-pattern>
+    </filter-mapping>
 
 	<servlet>
 		<servlet-name>cloudStartupServlet</servlet-name>
